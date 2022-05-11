@@ -1,4 +1,4 @@
-% This code replicates Figures 1-7 from "(When) Can we detect p-hacking"
+% This code replicates Figures 1-11 from "(When) Can we detect p-hacking"
 %Authors: G. Elliott, N. Kudrin, K. Wuthrich
 %%
 close all
