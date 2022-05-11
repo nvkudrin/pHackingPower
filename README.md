@@ -3,9 +3,9 @@ Replication package for "(When) Can we detect p-hacking?" by Graham Elliott, Nik
 
 File 'BWfigures.m' generates figures for analytical examples and saves them in folder BW. 
 
-File 'Data.Generation.m' generates initial Monte Carlo draws.
+File 'Data.Generation.m' generates initial Monte Carlo draws (it uses pveck.2.m, pveckIV.m and NeweyWest.m functions).
 
-File 'dgp.m' generates the non-p-hacked and p-hacked distributions for various distributions of true effects. The results are saved in folder DGPs.
+File 'dgp.m' generates the non-p-hacked and p-hacked distributions for various distributions of true effects (it uses BIC.m function). The results are saved in folder DGPs.
 
 File 'PowerFigures.m' generates the power curves reported in the paper.
 
