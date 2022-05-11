@@ -1,5 +1,6 @@
-%% Program to examine the impact of p-hacking through selecting amongst regressions. 
-
+% This code simulates data for Monte Carlo analysis from "(When) Can we detect p-hacking"
+% Authors: G. Elliott, N. Kudrin, K. Wuthrich
+%%
 clear all
 rng(123)
 nobs=200;

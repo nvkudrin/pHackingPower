@@ -1,5 +1,5 @@
-% function to examine all combinations of the z's as covariates and return
-% the vector of pvalues from regressing y on x
+% function to examine all combinations of the z's as instruments and return
+% the vector of pvalues from IV regressions of y on x using z
 
 function [bias, se] = pveckIV(eps,x,z,k)
 

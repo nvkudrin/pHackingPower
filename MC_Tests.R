@@ -1,6 +1,6 @@
 #####################################################################
 # Tests for MC simulation
-# Paper: (When) can we detect p-hacking
+# Paper: (When) Can we detect p-hacking?
 # Authors: G. Elliott, N. Kudrin, K. Wuthrich
 #####################################################################
 # install.packages("NlcOptim")

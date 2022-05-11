@@ -1,7 +1,9 @@
+% This code replicates Figures 1-7 from "(When) Can we detect p-hacking"
+%Authors: G. Elliott, N. Kudrin, K. Wuthrich
+%%
 close all
 clear all
 rng(12345)
-
 %% Covariate selection Example
 alpha = 0.05;
 z = @(h,p) norminv(1 - p) - h;
@@ -36,7 +38,7 @@ ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_1^t(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Covariate selection $p$-curves, $\gamma=0.5$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('Covariate selection: threshold, $\gamma=0.5$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$h=0$', '$h=1$','$h=2$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 axes('position',[.35 .34 .45 .45])
 box on 
@@ -62,7 +64,7 @@ ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_1^t(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Covariate selection $p$-curves, $h=1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('Covariate selection: threshold, $h=1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$\gamma=0.1$', '$\gamma=0.5$','$\gamma=0.9$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -108,7 +110,7 @@ xlim([0 1])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_1(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Covariate selection: Threshold vs. Minimum, $h = 1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('Covariate selection: threshold vs. minimum, $h = 1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('Threshold', 'Minimum','No $p$-hacking','Bound', 'Orientation','horizontal', 'interpreter', 'latex', 'NumColumns',2);
 
 axes('position',[.35 .34 .45 .45])
@@ -142,8 +144,8 @@ ylim([0.05 0.1])
 xlim([0 1])
 set(gca,'FontSize',18)
 xlabel('$$\gamma$$', 'FontSize',25, 'interpreter', 'latex')
-ylabel('Rejection Rate', 'FontSize',25, 'interpreter', 'latex')
-title('Rejection rate as a function of $\gamma$ $(\alpha = 0.05)$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+ylabel('Rejection rate', 'FontSize',25, 'interpreter', 'latex')
+title('Covariate selection: size distortion','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 saveas(gcf,'BW/CovarSize1_bw', 'epsc')
 close all
 %%
@@ -168,8 +170,8 @@ ylim([0 0.3])
 xlim([0 0.15])
 set(gca,'FontSize',18)
 xlabel('$$\alpha$$', 'FontSize',25, 'interpreter', 'latex')
-ylabel('Rejection Rate', 'FontSize',25, 'interpreter', 'latex')
-title('Rejection Rates for different $\alpha$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+ylabel('Rejection rate', 'FontSize',25, 'interpreter', 'latex')
+title('Covariate selection: size distortion','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$\gamma=0.1$', '$\gamma=0.5$','$\gamma=0.9$','Nominal size', 'Orientation','vertical', 'interpreter', 'latex', 'location', 'northwest');
 saveas(gcf,'BW/CovarSize2_bw', 'epsc')
 close all
@@ -211,8 +213,8 @@ xlim([0 4])
 set(gca,'FontSize',18)
 xlabel('$$h$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$\sqrt{N}\times$Bias', 'FontSize',25, 'interpreter', 'latex')
-title('Covariate selection: Bias','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
-lgd = legend('Minimum, $\gamma=0.1$', 'Minimum, $\gamma=0.5$','Minimum, $\gamma=0.9$','Thresholding, $\gamma=0.1$', 'Thresholding, $\gamma=0.5$','Thresholding, $\gamma=0.9$', 'Orientation','vertical', 'interpreter', 'latex', 'location', 'west');
+title('Covariate selection: bias','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+lgd = legend('Minimum, $\gamma=0.1$', 'Minimum, $\gamma=0.5$','Minimum, $\gamma=0.9$','Threshold, $\gamma=0.1$', 'Threshold, $\gamma=0.5$','Threshold, $\gamma=0.9$', 'Orientation','vertical', 'interpreter', 'latex', 'location', 'west');
 saveas(gcf,'BW/CovarBias_bw', 'epsc') 
 close all
 
@@ -265,7 +267,7 @@ ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_2^t(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('IV selection $p$-curves: Thresholding','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('IV selection: threshold','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$h=0$', '$h=1$','$h=2$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -292,7 +294,7 @@ ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_2^m(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('IV selection $p$-curves: Minimum','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('IV selection: minimum','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$h=0$', '$h=1$','$h=2$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -320,7 +322,7 @@ xlim([0 1])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_2(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('IV selection: Threshold vs. Minimum, $h = 1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('IV selection: threshold vs. minimum, $h = 1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('Threshold', 'Minimum','No $p$-hacking','Bound', 'Orientation','horizontal', 'interpreter', 'latex', 'NumColumns',2);
 
 axes('position',[.35 .34 .45 .45])
@@ -357,8 +359,8 @@ ylim([0 0.3])
 xlim([0 0.15])
 set(gca,'FontSize',18)
 xlabel('$$\alpha$$', 'FontSize',25, 'interpreter', 'latex')
-ylabel('Rejection Rate', 'FontSize',25, 'interpreter', 'latex')
-title('IV selection Rejection Rates for different $\alpha$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+ylabel('Rejection rate', 'FontSize',25, 'interpreter', 'latex')
+title('IV selection: size distortion','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('Under $p$-hacking', 'Nominal size','Orientation','vertical', 'interpreter', 'latex', 'location', 'northwest');
 saveas(gcf,'BW/IVSize1_bw', 'epsc')
 close all
@@ -379,8 +381,8 @@ xlim([0 2.5])
 set(gca,'FontSize',18)
 xlabel('$$h$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('Bias', 'FontSize',25, 'interpreter', 'latex')
-title('IV selection: Bias','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
-lgd = legend('Thresholding', 'Minimum','Orientation','vertical', 'interpreter', 'latex');
+title('IV selection: bias','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+lgd = legend('Threshold', 'Minimum','Orientation','vertical', 'interpreter', 'latex');
 saveas(gcf,'BW/IVBias1_bw', 'epsc')
 close all
 
@@ -417,7 +419,7 @@ ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_3^t(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Data Set selection: Thresholding','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('Dataset selection: threshold','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$h=0$', '$h=1$','$h=2$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -460,8 +462,8 @@ plot(P, Bound, '-' , 'LineWidth', 2, 'color', 'black')
 ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
-ylabel('$$g_3^m(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Data Set selection: Minimum, $h=0$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+ylabel('$$g_3^m(p;K)$$', 'FontSize',25, 'interpreter', 'latex')
+title('Dataset selection: minimum, $h=0$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$K=2$', '$K=5$','$K=20$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -487,8 +489,8 @@ plot(P, Bound, '-' , 'LineWidth', 2, 'color', 'black')
 ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
-ylabel('$$g_3^m(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Data Set selection: Minimum, $h=1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+ylabel('$$g_3^m(p;K)$$', 'FontSize',25, 'interpreter', 'latex')
+title('Dataset selection: minimum, $h=1$','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$K=2$', '$K=5$','$K=20$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -510,7 +512,7 @@ clear all
 rng(12345)
 %For Lag Length selection
 n = 200;
-M = 100000;
+M = 1000000;
 rho = zeros(M,1);
 for m = 1:M
 X = randn(n,1);
@@ -536,7 +538,7 @@ Bound = exp(z(0,P).^2/2).*(P<=0.5) + (P>0.5);
 for h = 0:2
 for j = 1:length(P)
     p = P(j);
-lp = L*(1 - (z(h, alpha)/z(h,p))^2);
+lp = L*(1 - (z(0, alpha)/z(0,p))^2);
 g = omega(rho).*normpdf(z(0,p)*omega(rho)-h);
 if (p<=alpha)
 I = mean(g.*(rho<=lp).*(rho>L));
@@ -574,7 +576,7 @@ ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_4^t(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Lag length selection: Thresholding','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('Lag length selection: threshold','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$h=0$', '$h=1$','$h=2$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -601,7 +603,7 @@ ylim([0 15])
 set(gca,'FontSize',18)
 xlabel('$$p$$', 'FontSize',25, 'interpreter', 'latex')
 ylabel('$$g_4^m(p)$$', 'FontSize',25, 'interpreter', 'latex')
-title('Lag length selection: Minimum','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+title('Lag length selection: minimum','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('$h=0$', '$h=1$','$h=2$','Bound', 'Orientation','horizontal', 'interpreter', 'latex');
 
 axes('position',[.35 .34 .45 .45])
@@ -634,8 +636,8 @@ ylim([0 0.15])
 xlim([0 0.15])
 set(gca,'FontSize',18)
 xlabel('$$\alpha$$', 'FontSize',25, 'interpreter', 'latex')
-ylabel('Probability of rejection', 'FontSize',25, 'interpreter', 'latex')
-title('Lag Length Selection Size Distortion','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+ylabel('Rejection rate', 'FontSize',25, 'interpreter', 'latex')
+title('Lag length selection: size distortion','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 lgd = legend('Under $p$-hacking', 'Nominal size', 'Orientation','vertical', 'interpreter', 'latex','location','northwest');
 saveas(gcf,'BW/LagLengthSize1_bw', 'epsc')
 close all

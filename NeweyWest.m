@@ -1,5 +1,6 @@
-% function to examine all combinations of the z's as covariates and return
-% the vector of pvalues from regressing y on x
+% This code implements Newey-West standard errors used in the lag length
+% selection example
+% Authors: G. Elliott, N. Kudrin, K. Wuthrich
 
 function [Q] = NeweyWest(eps,x,L)
 

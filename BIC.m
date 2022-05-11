@@ -1,3 +1,7 @@
+% This code selects the initial number of lags for the lag length selection example
+% using BIC criterion
+% Authors: G. Elliott, N. Kudrin, K. Wuthrich
+%%
 function [k] = BIC(y)
 K = [1,2,3,4,5];
 T = length(y);

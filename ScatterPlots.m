@@ -1,11 +1,13 @@
+% This code replicates Monte Carlo scatter plots from "(When) Can we detect p-hacking"
+%Authors: G. Elliott, N. Kudrin, K. Wuthrich
+%%
 clear all
-
-S = importdata('DGPs/RejectionRates_April6.csv');
+S = importdata('RejectionRates_April6.csv');
 V = S.data;
 tau = [0:0.05:1];
 tau_s = [0.25, 0.75];
 
-load('DGPs/Bias_struct.mat')
+load('Bias_struct.mat')
 
 H = [0, 1, 2, 3, 4];
 K = [3,5,7];
@@ -74,19 +76,19 @@ lgd.FontSize = 16;
 legend('Location','northwest')
 
 set(gca,'FontSize',18)
-xlabel('Average Bias', 'FontSize',25, 'interpreter', 'latex')
+xlabel('Average bias', 'FontSize',25, 'interpreter', 'latex')
 ylabel('Power', 'FontSize',25, 'interpreter', 'latex')
 
 if (mnm==0)
     ylim([0,1])
     if (sel==0)
         xlim([min(B),0.05])
-    title('IV Selection, Thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+    title('IV selection: thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
     saveas(gcf,append('Scatters/','IV_scatter_t'), 'epsc')
     end
     if (sel==1)
         xlim([0.03,0.1])
-    title('Covariate Selection, Thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+    title('Covariate selection: thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
     saveas(gcf,append('Scatters/','CovSel_scatter_t'), 'epsc')
     end
 
@@ -96,12 +98,12 @@ if (mnm==1)
     ylim([0,0.8])
     if (sel==0)
         xlim([min(B),0.05])
-    title('IV Selection, Minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+    title('IV selection: minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
     saveas(gcf,append('Scatters/','IV_scatter_m'), 'epsc')
     end
         if (sel==1)
             xlim([0.03,0.1])
-    title('Covariate Selection, Minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+    title('Covariate selection: minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
         saveas(gcf,append('Scatters/','CovSel_scatter_m'), 'epsc')
         end
 

@@ -1,10 +1,14 @@
+% This code generates non-phacked and p-hacked distributions for
+% Monte Carlo simulations and replicate figuers in Appendix B
+% from "(When) Can we detect p-hacking"
+% Authors: G. Elliott, N. Kudrin, K. Wuthrich
+%%
 clear all
-load('DGPs/MC_distributions_Apr6.mat')
+load('MC_distributions_Apr6.mat')
 rng(12345)
- Xi = chi2rnd(1, 1, 1000000);
+Xi = chi2rnd(1, 1, 1000000);
 H = [0, 1, 2, 3];
 K = [3,5,7];
-Up = [0,1];
 nobs = 200;
 
 BIAS = struct;
@@ -32,7 +36,7 @@ b_var = repmat(Xi, 5, 1)/sqrt(nobs);
     
  %LagLengthSelection   
     [P0, P1, P1min] = NullAndAlt_var_bic(b_var, mcout_bias_var, mcout_se_var, 1, 0.05, mcout_bic_var);
-csvwrite(append('DGPs','P0var', int2str(H(j)), '.csv'), P0)
+csvwrite(append('P0var', int2str(H(j)), '.csv'), P0)
 fig = fig+1;
 figure(fig)
 histogram(P0, 100, 'Normalization', 'probability')
@@ -45,9 +49,9 @@ end
 if (j==4)
     title(append('No $p$-hacking: $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/LagLengthSelection/','P0var', int2str(H(j))), 'epsc')
+saveas(gcf,append('LagLengthSelection/','P0var', int2str(H(j))), 'epsc')
 
-csvwrite(append('DGPs','P1var', int2str(H(j)), '.csv'), P1)
+csvwrite(append('P1var', int2str(H(j)), '.csv'), P1)
 
 fig = fig+1;
 figure(fig)
@@ -61,7 +65,7 @@ end
 if (j==4)
     title(append('p-hacked (threshold): $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/LagLengthSelection/','P1var', int2str(H(j))), 'epsc')
+saveas(gcf,append('LagLengthSelection/','P1var', int2str(H(j))), 'epsc')
 
 fig = fig+1;
 figure(fig)
@@ -75,8 +79,8 @@ end
 if (j==4)
     title(append('p-hacked (minimum): $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/LagLengthSelection/','P1var', int2str(H(j)), 'min'), 'epsc')
-csvwrite(append('DGPs','P1var', int2str(H(j)), 'min', '.csv'), P1min) 
+saveas(gcf,append('LagLengthSelection/','P1var', int2str(H(j)), 'min'), 'epsc')
+csvwrite(append('P1var', int2str(H(j)), 'min', '.csv'), P1min) 
 
 
 for k = 1:3
@@ -87,9 +91,9 @@ b_ind_sel = b_ind_sel+1;
 BIAS.sel(1, b_ind_sel) = mean(B1);
 BIAS.sel(2, b_ind_sel) = mean(B1min);
 
-csvwrite(append('DGPs','P0sel', int2str(H(j)), int2str(K(k)), '.csv'), P0)
-csvwrite(append('DGPs','P1sel', int2str(H(j)), int2str(K(k)), '.csv'), P1)
-csvwrite(append('DGPs','P1sel', int2str(H(j)), int2str(K(k)),'min', '.csv'), P1min)
+csvwrite(append('P0sel', int2str(H(j)), int2str(K(k)), '.csv'), P0)
+csvwrite(append('P1sel', int2str(H(j)), int2str(K(k)), '.csv'), P1)
+csvwrite(append('P1sel', int2str(H(j)), int2str(K(k)),'min', '.csv'), P1min)
 fig = fig+1;
 figure(fig)
 histogram(P0, 100, 'Normalization', 'probability')
@@ -102,7 +106,7 @@ end
 if (j==4)
     title(append('No $p$-hacking: $K = $', int2str(K(k)), ', $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/CovariateSelection/','P0sel', int2str(H(j)), int2str(K(k))), 'epsc')
+saveas(gcf,append('CovariateSelection/','P0sel', int2str(H(j)), int2str(K(k))), 'epsc')
 
 fig = fig+1;
 figure(fig)
@@ -116,7 +120,7 @@ end
 if (j==4)
     title(append('p-hacked (threshold): $K = $ ', int2str(K(k)), ', $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/CovariateSelection/','P1sel', int2str(H(j)), int2str(K(k))), 'epsc')
+saveas(gcf,append('CovariateSelection/','P1sel', int2str(H(j)), int2str(K(k))), 'epsc')
 
 fig = fig+1;
 figure(fig)
@@ -130,7 +134,7 @@ end
 if (j==4)
     title(append('p-hacked (minimum): $K = $ ', int2str(K(k)), ', $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/CovariateSelection/','P1sel', int2str(H(j)), int2str(K(k)), 'min'), 'epsc')
+saveas(gcf,append('CovariateSelection/','P1sel', int2str(H(j)), int2str(K(k)), 'min'), 'epsc')
 
 %IVSelection
 if (k<3)
@@ -144,7 +148,7 @@ b_ind_iv = b_ind_iv+1;
     end
 BIAS.iv(1, b_ind_iv) = mean(B1);
 BIAS.iv(2, b_ind_iv) = mean(B1min);
-csvwrite(append('DGPs','P0iv', int2str(H(j)), int2str(K(k)), '.csv'), P0)
+csvwrite(append('P0iv', int2str(H(j)), int2str(K(k)), '.csv'), P0)
 fig = fig+1;
 figure(fig)
 histogram(P0, 100, 'Normalization', 'probability')
@@ -157,9 +161,9 @@ end
 if (j==4)
     title(append('No $p$-hacking: $K = $ ', int2str(K(k)), ', $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/IVSelection/','P0iv', int2str(H(j)), int2str(K(k))), 'epsc')
+saveas(gcf,append('IVSelection/','P0iv', int2str(H(j)), int2str(K(k))), 'epsc')
 
-csvwrite(append('DGPs','P1iv', int2str(H(j)), int2str(K(k)), '.csv'), P1)
+csvwrite(append('P1iv', int2str(H(j)), int2str(K(k)), '.csv'), P1)
 
 fig = fig+1;
 figure(fig)
@@ -173,10 +177,10 @@ end
 if (j==4)
     title(append('p-hacked (threshold): $K = $ ', int2str(K(k)), ', $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/IVSelection/','P1iv', int2str(H(j)), int2str(K(k))), 'epsc')
+saveas(gcf,append('IVSelection/','P1iv', int2str(H(j)), int2str(K(k))), 'epsc')
 
 
-csvwrite(append('DGPs','P1iv', int2str(H(j)), int2str(K(k)),'min', '.csv'), P1min)
+csvwrite(append('P1iv', int2str(H(j)), int2str(K(k)),'min', '.csv'), P1min)
 
 fig = fig+1;
 figure(fig)
@@ -190,10 +194,10 @@ end
 if (j==4)
     title(append('p-hacked (minimum): $K = $ ', int2str(K(k)), ', $h \sim \chi^2(1)$'),'fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
 end
-saveas(gcf,append('DGPs/IVSelection/','P1iv', int2str(H(j)), int2str(K(k)), 'min'), 'epsc')
+saveas(gcf,append('IVSelection/','P1iv', int2str(H(j)), int2str(K(k)), 'min'), 'epsc')
 
 end
 end
 close all
 end
-save('DGPs/Bias_struct.mat', 'BIAS')
+save('Bias_struct.mat', 'BIAS')

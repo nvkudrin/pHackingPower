@@ -1,8 +1,8 @@
 #####################################################################
 # This function computes rejection rates in MC simulations
-#a - non-p-hacked distribition, b - p-hacked, N - sample size, p_max_1/2 - subinterval upperbound
-#bins_1/2 the number of bis to use in CS tests, M - number of MC replications, iter - dgp index
-# Paper: Detecting p-hacking
+#a - non-p-hacked distribition, b - p-hacked, N - sample size, p_max_2 - subinterval upper bound
+#bins_2 the number of bis to use in CS tests, M - number of MC replications, iter - dgp index
+# Paper: (When) Can we detect p-hacking?
 # Authors: G. Elliott, N. Kudrin, K. Wuthrich
 #####################################################################
 MC <- function(a, b, N, p_max_2, bins_2, M,  iter){
@@ -67,8 +67,6 @@ MC <- function(a, b, N, p_max_2, bins_2, M,  iter){
   
   it = matrix(iter, size(rdd))
   
-  #concat <- cbind(it,LocBin, FM, rdd, CS_1, CS_2B, LCM8, fail, LocBin_min, FM_min, rdd_min, CS_1_min, CS_2B_min, LCM8_min, fail_min)
   concat <- cbind(it,LocBin, FM, rdd, CS_1, CS_UB, CS_2B, LCM8, fail)
-  #return(matrix(concat, K, 15))
   return(matrix(concat, K, 9))
 }
