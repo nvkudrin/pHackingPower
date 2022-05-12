@@ -1,7 +1,14 @@
+function [bias, se] = pveck2(eps,x,z,k)
 % function to examine all combinations of the z's as covariates and return
 % the vector of pvalues from regressing y on x
-
-function [bias, se] = pveck2(eps,x,z,k)
+% Inputs:
+% eps - model error term
+% x - explanatory variable of interest
+% z - control variables
+% k - the numer of controls to use
+% Outputs:
+% bias - the bias of the estimate
+% se - the standard error of the estimate
 
 % note  k<dim(x)<15
 

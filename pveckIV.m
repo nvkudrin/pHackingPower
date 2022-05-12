@@ -1,7 +1,14 @@
+function [bias, se] = pveckIV(eps,x,z,k)
 % function to examine all combinations of the z's as instruments and return
 % the vector of pvalues from IV regressions of y on x using z
-
-function [bias, se] = pveckIV(eps,x,z,k)
+% inputs:
+% eps - model error term
+% x - endogenous variable
+% z - instruments
+% k - the numer of instruments to use
+% Outputs:
+% bias - the bias of the estimate
+% se - the standard error of the estimate
 
 % note  k<dim(x)<15
 

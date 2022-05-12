@@ -3,9 +3,10 @@
 %%
 clear all
 rng(123)
-nobs=200;
-nmc = 1000000;
+nobs=200; %sample sizes
+nmc = 1000000; %the number of MC replications
 
+% Variables to store the results
 mcout_bias = [];
 mcout_se = [];
 mcout_bias_iv5 = [];

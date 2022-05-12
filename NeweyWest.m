@@ -1,9 +1,9 @@
 % This code implements Newey-West standard errors used in the lag length
 % selection example
 % Authors: G. Elliott, N. Kudrin, K. Wuthrich
-
 function [Q] = NeweyWest(eps,x,L)
-
+% Inputs: eps - model error term, x - regressor, L - the number of lags
+% Output: Q - NW standard error
 T = length(eps);
 X = [ones(T,1), x];
 D = diag(eps.^2);
