@@ -1,6 +1,6 @@
 #####################################################################
 # Tests for MC simulation
-# Paper: (When) Can we detect p-hacking?
+# Paper: (When) can we detect p-hacking
 # Authors: G. Elliott, N. Kudrin, K. Wuthrich
 #####################################################################
 # install.packages("NlcOptim")
@@ -335,7 +335,7 @@ CoxShi <- function(Q, ind, p_min, p_max, J, K, B, Bnd0,Bnd1, Bnd2, Include_LB){
     #if (is.singular.matrix(Omega)==FALSE){
   #myQ = solve(Omega)
   myQ = tryCatch(solve(Omega), error = function(e) "error")
-  if (myQ != "error"){
+  if ((myQ[1] != "error")){
   
   fn <- function(t){
     Obj = N*(t(Phat - t))%*%myQ%*%((Phat - t))
@@ -345,7 +345,7 @@ CoxShi <- function(Q, ind, p_min, p_max, J, K, B, Bnd0,Bnd1, Bnd2, Include_LB){
   
   res = tryCatch(fmincon(t0, fn, A = A, b = b), error = function(e) "error")
   iter = 0
-  while ((res == "error")&(iter<10)){
+  while ((res[1] == "error")&(iter<10)){
     iter = iter + 0
     ru = runif(J)
     t0 = matrix(ru[1:(J-1)]/sum(ru),J-1,1)
