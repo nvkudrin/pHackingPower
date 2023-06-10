@@ -1,17 +1,30 @@
-% This code replicates Monte Carlo scatter plots from "(When) Can we detect p-hacking"
-%Authors: G. Elliott, N. Kudrin, K. Wuthrich
-%%
 clear all
-S = importdata('RejectionRates_April6.csv');
-V = S.data;
+
+%S = importdata('DGPs/RejectionRates_April6.csv');
+%V = S.data;
+
+
+S = readtable("PowerCurves/RejectionRates_Apr5.csv");
+Vfull=table2array(S);
+Vfull = Vfull(:,2:end);
+
 tau = [0:0.05:1];
 tau_s = [0.25, 0.75];
+num_per_dgp = 11;
 
-load('Bias_struct.mat')
+load('DGPs/Bias_struct.mat')
 
 H = [0, 1, 2, 3, 4];
 K = [3,5,7];
 
+for sided = [1,2]
+    V = Vfull(1:21, (1+(sided-1)*1056/2): (1056/(3-sided)));
+    if sided == 1
+        side = "1sided";
+    end
+    if sided == 2
+        side = "2sided";
+    end
 for sel = 0:1
 for mnm=0:1
 tau_j = find(tau==tau_s(mnm+1));
@@ -23,13 +36,13 @@ CS1B = [];
 CS2B = [];
 LCM = [];
 for fig = (24*mnm+1):(24*mnm+20)
-    Bin = [Bin, V(tau_j, 2+(fig-1)*9)];
-    Fisher = [Fisher, V(tau_j, 3+(fig-1)*9)];
-    rdd = [rdd, V(tau_j, 4+(fig-1)*9)];
-    CS1 = [CS1, V(tau_j, 5+(fig-1)*9)];
-    CS1B = [CS1B, V(tau_j, 6+(fig-1)*9)];
-    CS2B = [CS2B, V(tau_j, 7+(fig-1)*9)];
-    LCM = [LCM, V(tau_j, 8+(fig-1)*9)];
+    Bin = [Bin, V(tau_j, 2+(fig-1)*num_per_dgp)];
+    Fisher = [Fisher, V(tau_j, 3+(fig-1)*num_per_dgp)];
+    rdd = [rdd, V(tau_j, 4+(fig-1)*num_per_dgp)];
+    CS1 = [CS1, V(tau_j, 5+(fig-1)*num_per_dgp)];
+    CS1B = [CS1B, V(tau_j, 6+(fig-1)*num_per_dgp)];
+    CS2B = [CS2B, V(tau_j, 7+(fig-1)*num_per_dgp)];
+    LCM = [LCM, V(tau_j, 8+(fig-1)*num_per_dgp)];
 end
 
     if (sel == 0)
@@ -39,10 +52,10 @@ end
        Ind = 1:12;
      end
 if (mnm==0)
-     B = [BIAS.sel(1, 1:12), BIAS.iv(1,1:8)];
+     B = [BIAS.sel(1, 1:12,sided), BIAS.iv(1,1:8,sided)];
 end
 if (mnm==1)
-B = [BIAS.sel(2, 1:12), BIAS.iv(2,1:8)];
+B = [BIAS.sel(2, 1:12,sided), BIAS.iv(2,1:8,sided)];
 end
 
 figure(1)
@@ -76,20 +89,30 @@ lgd.FontSize = 16;
 legend('Location','northwest')
 
 set(gca,'FontSize',18)
-xlabel('Average bias', 'FontSize',25, 'interpreter', 'latex')
+xlabel('Average Bias', 'FontSize',25, 'interpreter', 'latex')
 ylabel('Power', 'FontSize',25, 'interpreter', 'latex')
 
 if (mnm==0)
     ylim([0,1])
     if (sel==0)
+        if sided == 1
         xlim([min(B),0.05])
-    title('IV selection: thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
-    saveas(gcf,append('Scatters/','IV_scatter_t'), 'epsc')
+        end
+        if sided == 2
+                xlim([min(B),0.015])
+            end
+    title('IV Selection, Thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+    saveas(gcf,append('Scatters/','IV_scatter_t', side), 'epsc')
     end
     if (sel==1)
+        if sided == 1
         xlim([0.03,0.1])
-    title('Covariate selection: thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
-    saveas(gcf,append('Scatters/','CovSel_scatter_t'), 'epsc')
+        end
+        if sided == 2
+                xlim([0.03,0.07])
+            end
+    title('Covariate Selection, Thresholding ($\tau = 0.25$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+    saveas(gcf,append('Scatters/','CovSel_scatter_t',side), 'epsc')
     end
 
 end
@@ -97,17 +120,28 @@ end
 if (mnm==1)
     ylim([0,0.8])
     if (sel==0)
+        if sided == 1
         xlim([min(B),0.05])
-    title('IV selection: minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
-    saveas(gcf,append('Scatters/','IV_scatter_m'), 'epsc')
+        end
+          if sided == 2
+                xlim([min(B),0.027])
+            end
+    title('IV Selection, Minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+    saveas(gcf,append('Scatters/','IV_scatter_m',side), 'epsc')
     end
         if (sel==1)
+            if sided == 1
             xlim([0.03,0.1])
-    title('Covariate selection: minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
-        saveas(gcf,append('Scatters/','CovSel_scatter_m'), 'epsc')
+            end
+            if sided == 2
+                xlim([0.03,0.07])
+            end
+    title('Covariate Selection, Minimum ($\tau = 0.75$)','fontweight','bold', 'FontSize',20, 'interpreter', 'latex')
+        saveas(gcf,append('Scatters/','CovSel_scatter_m', side), 'epsc')
         end
 
 end
 close all
+end
 end
 end
