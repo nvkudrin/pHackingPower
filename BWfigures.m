@@ -474,7 +474,7 @@ hold on
 plot(P(indexOfInterest),pcurves3_m(indexOfInterest,2), ':' , 'LineWidth', 2, 'color', 'black')
 plot(P(indexOfInterest),pcurves3_m(indexOfInterest,3), '-.' , 'LineWidth', 2, 'color', 'black')
 plot(P(indexOfInterest),Bound(indexOfInterest), '-' , 'LineWidth', 2, 'color', 'black')
-ylim([0 10])
+ylim([0 20])
 xlim([0 0.25])
 saveas(gcf,'BW/DataChoice2_bw', 'epsc')
 close all
@@ -496,12 +496,12 @@ lgd = legend('$K=2$', '$K=5$','$K=20$','Bound', 'Orientation','horizontal', 'int
 axes('position',[.35 .34 .45 .45])
 box on 
 indexOfInterest = (P < 0.4) & (P > 0.0001); 
-plot(P(indexOfInterest),pcurves3_m(indexOfInterest,1), '--' , 'LineWidth', 2, 'color', 'black') % plot on new axes
+plot(P(indexOfInterest),pcurves3_m(indexOfInterest,4), '--' , 'LineWidth', 2, 'color', 'black') % plot on new axes
 hold on
-plot(P(indexOfInterest),pcurves3_m(indexOfInterest,2), ':' , 'LineWidth', 2, 'color', 'black')
-plot(P(indexOfInterest),pcurves3_m(indexOfInterest,3), '-.' , 'LineWidth', 2, 'color', 'black')
+plot(P(indexOfInterest),pcurves3_m(indexOfInterest,5), ':' , 'LineWidth', 2, 'color', 'black')
+plot(P(indexOfInterest),pcurves3_m(indexOfInterest,6), '-.' , 'LineWidth', 2, 'color', 'black')
 plot(P(indexOfInterest),Bound(indexOfInterest), '-' , 'LineWidth', 2, 'color', 'black')
-ylim([0 10])
+ylim([0 20])
 xlim([0 0.25])
 saveas(gcf,'BW/DataChoice3_bw', 'epsc')
 close all
