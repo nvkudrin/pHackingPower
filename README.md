@@ -3,4 +3,4 @@ Replication package for "The Power of Tests for Detecting $p$-Hacking" (https://
 
 For detailed description of the files and replication instructions, see README.pdf.
 
-Questions/error reports: nkudrin@ucsd.edu
+Questions/error reports: n.kudrin@queensu.ca
