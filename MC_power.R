@@ -58,6 +58,8 @@ MC <- function(a, b, N, p_max_2, bins_2, M, sided, iter){
       P_published_smooth = P[pub_bias_draw < exp(-8.45*P)]
       
       for (pb_mode in 1:3){
+        
+        if ((pb_mode == 1)|(tau == 0.5)){
         if (pb_mode == 2){
           P = P_published_sharp
         }
@@ -78,7 +80,7 @@ MC <- function(a, b, N, p_max_2, bins_2, M, sided, iter){
       fail_ub[m,k+(pb_mode-1)*K] = 1*(csub==999)+1*(csub==888)
       fail_2b[m,k+(pb_mode-1)*K] = 1*(cs2b==999)+1*(cs2b==888)
       }
-      
+      }
     }
   }
   
