@@ -1,18 +1,11 @@
-function [bias, se] = pveck2(eps,x,z,k)
 % function to examine all combinations of the z's as covariates and return
 % the vector of pvalues from regressing y on x
-% Inputs:
-% eps - model error term
-% x - explanatory variable of interest
-% z - control variables
-% k - the numer of controls to use
-% Outputs:
-% bias - the bias of the estimate
-% se - the standard error of the estimate
+
+function [bias, se] = pveck2(eps,x,z,k)
 
 % note  k<dim(x)<15
-
 [n,K]=size(z);
+if (k>0)
 
 v=(1:1:K)';
 s1=nchoosek(v,k);
@@ -21,8 +14,7 @@ bias=zeros(length(s1),1);
 se=zeros(length(s1),1);
 e1 = zeros(1, k+2);
 e1(1)=1;
-for i=1:length(s1)
-    
+for i=1:length(s1)    
     x1=[x ones(n,1) z(:,s1(i,:))];
     %[b1,se]=ols1(y,x1,0,0);
     bias(i,1) = e1*inv(x1'*x1)*x1'*eps;
@@ -30,4 +22,15 @@ for i=1:length(s1)
     se(i,1) = sqrt(e1*(inv(x1'*x1)*sum((eps_hat).^2)/(size(x1,1) - size(x1,2)))*e1');
     %t=b1(1,1)/sqrt(se(1,1));
     %p(i,1)=1-normcdf(t);    % upper tail rejections
+end
+end
+
+if (k==0)
+    e1 = zeros(1, k+2);
+    e1(1)=1;
+    x1=[x ones(n,1)];
+    %[b1,se]=ols1(y,x1,0,0);
+    bias = e1*inv(x1'*x1)*x1'*eps;
+    eps_hat = x1*inv(x1'*x1)*x1'*eps - eps;
+    se = sqrt(e1*(inv(x1'*x1)*sum((eps_hat).^2)/(size(x1,1) - size(x1,2)))*e1');
 end
