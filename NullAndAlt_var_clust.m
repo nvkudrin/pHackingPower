@@ -1,5 +1,5 @@
 function [P0, P1, P1min] = NullAndAlt_var_clust(b, bias, se, s, alpha,GeneralToSpecific)
-%For lag length selection example Monte Carlo experiments, 
+%For cluster selection example Monte Carlo experiments, 
 % this function returns:
 
 %P0 - the null distribution of p-values under no p-hacking
@@ -12,8 +12,8 @@ function [P0, P1, P1min] = NullAndAlt_var_clust(b, bias, se, s, alpha,GeneralToS
 %bias - the vector of biases
 %se - the vector of standard errors
 %s = 1 or 2 for 1- or 2-sided tests respectively
-%alpha - significance level used by researchers
-%bic - the vector of BIC selected lags
+%alpha - significance level used by researcherss
+%GeneralToSpecific = 1 if general-to-specific
 
 M = length(bias(1, :));
 

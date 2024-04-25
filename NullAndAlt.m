@@ -18,6 +18,7 @@ function [P0, P1,P1min,  Bias0, Bias1, Bias1min] = NullAndAlt(b, bias, se, s, al
 %alpha - significance level used by researchers
 %Ktotal = total number of controls/instruments used in simulation
 %K - number of controls/instruments researchers have access to
+%GeneralToSpecific = 1 if general-to-specific
 
 M = length(bias(1, :));
 P0 = zeros(M,1);
