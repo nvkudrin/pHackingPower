@@ -1,20 +1,9 @@
 % This program creates Figures showing the power of tests for different DGPS
 clear all
 
-% opts = detectImportOptions('csvFiles/Power_Calculations/RejectionRates_main_July21.csv');
-% opts = setvartype(opts, 'char');  % or 'string' depending on use case
-% RejectionRates = readtable('csvFiles/Power_Calculations/RejectionRates_main_July21.csv', opts);
-% RejectionRates=table2array(RejectionRates);
-% RejectionRates = RejectionRates(:,2:end);
-
 % Read all data 
 RejectionRates = readcell('csvFiles/Power_Calculations/RejectionRates_main.csv');
 RejectionRates(:, 1:21:size(RejectionRates, 2))=[];
-
-% headers = raw_data(1, :);
-% tests = raw_data(2, :);
-
-
 
 folders = {'csvFiles/Distributions/CovariateSelection', 'csvFiles/Distributions/IVSelection', 'csvFiles/Distributions/LagLengthSelection', 'csvFiles/Distributions/ClusterSelection'};
 processedNames = {};
@@ -70,12 +59,6 @@ folderMap = containers.Map(...
      "Figures/PowerCurves/ClusterSelection"]);
 
 for k = 1:numel(FilteredByName)
-    % data = FilteredByName{k};
-    % headers = string(data(1, :));
-    % tests = string(data(2, :));
-    % numericData = str2double(data(3:23, :));
-    % baseName = processedNames{k};
-
     data = FilteredByName{k};
     headers = string(data(1, :));
     tests = string(data(2, :));

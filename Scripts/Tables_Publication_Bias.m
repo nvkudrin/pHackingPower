@@ -28,11 +28,6 @@ tau_label = 'Frac. of $p$-hackers';
 % - Second row: short test name (e.g., CS_1)
 % Then 27 rows of numerical values (21 tau levels for no pub bias and 3 tau levels × 2,, bias types)
 
-%opts = detectImportOptions('csvFiles/Power_Calculations/RejectionRates_main_July21.csv');
-%opts = setvartype(opts, 'char');
-%T = readtable('csvFiles/Power_Calculations/RejectionRates_main_July21.csv', opts);
-%T = table2cell(T);
-
 RejectionRates = readcell('csvFiles/Power_Calculations/RejectionRates_main.csv');
 RejectionRates(:, 1:21:size(RejectionRates, 2))=[];
 
