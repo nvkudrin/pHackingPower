@@ -1,8 +1,11 @@
 Replication package for **"The Power of Tests for Detecting $p$-Hacking"** (https://arxiv.org/abs/2205.07950) by Graham Elliott, Nikolay Kudrin and Kaspar Wuthrich.
-Note that this repository includes **only the core files** of the replication package which are sufficient to generate all remaining folders and output files. The full package, including all intermediate results and output, can be downloaded here: [Replication Package on Google Drive](https://drive.google.com/drive/folders/1G-XmN8JYVcEtHAnLxiVmGZXb8v_jiXm-?usp=sharing)
+
+Note that this repository includes **only the core files** of the replication package which are sufficient to generate all remaining folders and output files. For detailed description of the files and replication instructions, see README.pdf.
+
+The full package, including all intermediate results and output, can be downloaded here: [Replication Package on Google Drive](https://drive.google.com/drive/folders/1G-XmN8JYVcEtHAnLxiVmGZXb8v_jiXm-?usp=sharing)
 
 
-For detailed description of the files and replication instructions, see README.pdf.
+
 
 Questions/error reports: n.kudrin@queensu.ca
 
