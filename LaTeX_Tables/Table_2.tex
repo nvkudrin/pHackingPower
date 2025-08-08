@@ -1,0 +1,24 @@
+\begin{table}[H]
+\begin{center}
+\caption{The effect of publication bias}
+\label{tab:publication_bias_1}
+\onehalfspacing
+\footnotesize
+\begin{tabular}{lccccccccccccccccccccccc}
+\toprule
+ & \multicolumn{18}{c}{Test} \\ \cline{2-19}
+ & \multicolumn{3}{c}{Binomial} & \multicolumn{3}{c}{Discontinuity} & \multicolumn{3}{c}{CS1} & \multicolumn{3}{c}{CSUB} & \multicolumn{3}{c}{CS2B} & \multicolumn{3}{c}{LCM} \\
+Frac. of $p$-hackers & 0 & 0.5 & 1 & 0 & 0.5 & 1 & 0 & 0.5 & 1 & 0 & 0.5 & 1 & 0 & 0.5 & 1 & 0 & 0.5 & 1 \\ \hline
+\textit{} & \multicolumn{18}{c}{Thresholding} \\ \cline{2-19}
+No Pub Bias & 0.03 & 0.10 & 0.18 & 0.04 & 0.36 & 0.72 & 0.06 & 0.80 & 1.00 & 0.04 & 0.12 & 0.77 & 0.06 & 0.88 & 1.00 & 0.03 & 0.41 & 0.99 \\
+Sharp Pub Bias & 0.03 & 0.10 & 0.18 & 0.92 & 1.00 & 1.00 & 0.13 & 0.83 & 1.00 & 0.99 & 1.00 & 1.00 & 0.99 & 1.00 & 1.00 & 0.01 & 0.93 & 1.00 \\
+Smooth Pub Bias & 0.02 & 0.05 & 0.09 & 0.04 & 0.22 & 0.48 & 0.02 & 0.12 & 0.79 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 & 0.03 & 0.58 \\
+\textit{} & \multicolumn{18}{c}{Minimum} \\ \cline{2-19}
+No Pub Bias & 0.03 & 0.03 & 0.03 & 0.04 & 0.05 & 0.05 & 0.06 & 0.03 & 0.02 & 0.04 & 0.03 & 0.31 & 0.06 & 0.04 & 0.36 & 0.03 & 0.00 & 0.00 \\
+Sharp Pub Bias & 0.03 & 0.03 & 0.03 & 0.92 & 0.95 & 0.96 & 0.13 & 0.07 & 0.06 & 0.99 & 1.00 & 1.00 & 0.99 & 1.00 & 1.00 & 0.01 & 0.00 & 0.00 \\
+Smooth Pub Bias & 0.02 & 0.02 & 0.02 & 0.04 & 0.04 & 0.05 & 0.02 & 0.01 & 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\doublespacing\textit{Notes:} Table shows the impact of publication bias on the power of the tests when $p$-hacking is based on covariate selection with $K=3$ (general-to-specific, two-sided tests) and $h=0$. The results are based on 5,000 simulation repetitions.
+\end{table}
