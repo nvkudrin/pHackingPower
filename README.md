@@ -8,7 +8,7 @@ Questions/error reports: n.kudrin@queensu.ca
 
 This replication package includes data from:
 
-**Data and Code for: Methods Matter: P-Hacking and Publication Bias in Causal Analysis in Economics**, by Abel Brodeur, Nikolai Cook, and Anthony Heyes. Available at https://www.openicpsr.org/openicpsr/project/120246/version/V2.
+**Data and Code for: Methods Matter: P-Hacking and Publication Bias in Causal Analysis in Economics**, by Abel Brodeur, Nikolai Cook, and Anthony Heyes. Available at https://www.openicpsr.org/openicpsr/project/120246/version/V2/View.
 
 This dataset is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license.
 
