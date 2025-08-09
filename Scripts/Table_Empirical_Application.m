@@ -12,9 +12,9 @@ obs = [5853, 7569, 3148, 5170, 679, 760, 3954, 17786, ...
 
 % Row and column labels
 tests = panelA.Properties.RowNames;
-subsamples = {'DID', 'RCT', 'RDD', 'IV', 'F<30', 'F>=30', ...
+subsamples = {'DID', 'RCT', 'RDD', 'IV', 'F<30', 'F$\geq$30', ...
               'Top 5', '!Top 5', '2015', '2018', 'AJQ', ...
-              'Star Wars', 'All'};
+              'SW', 'All'};
 nTests = numel(tests);
 nSubs = numel(subsamples);
 
@@ -37,7 +37,7 @@ fprintf(fid, '\\multicolumn{%d}{c}{Subsample} & \\multicolumn{1}{c}{\\multirow{2
 fprintf(fid, '\\cline{2-%d}\n', nSubs+1);
 fprintf(fid, '\\multicolumn{1}{c}{} ');
 fprintf(fid, '&%s ', subsamples{:});
-fprintf(fid, '\\multicolumn{1}{c}{} ');
+fprintf(fid, '& \\multicolumn{1}{c}{} ');
 fprintf(fid, '\\\\\n\\midrule\n');
 
 % Panel A
